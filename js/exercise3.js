@@ -1,31 +1,26 @@
 function sumArray(arr, int){
     let res = [];
+    
+    let flag = false;
 
-    // for(let i=0; i<arr.length-1; i++){
-    //     for(let j = i+1; j<arr.length; j++){
-    //         if(arr[i] + arr[j] == int){
-    //             let x = arr.splice(i,1);
-    //             let y = arr.splice(j-1, 1);
-    //             res.push(x.concat(y));
-    //         }
-    //     }    
-    // }
+    let i = 0;
+    while(i<arr.length){
 
-    arr.forEach((val, index) => {
-        console.log(index, " ==> Outer Loop");
-        for(let i=0; i<arr.length; i++){
-            console.log(i," ==> Inner Loop");
-            if(val+arr[i] == int){
-                let x = arr.splice(index,1);
-                let y = arr.splice(i-1, 1);
-                console.log(x, "==> X")
-                console.log(y, "==> Y");;
+        for(let j = i+1; j<arr.length; j++){
+            if(arr[i] + arr[j] == int){
+                let x = arr.splice(i,1);
+                let y = arr.splice(j-1, 1);
+
                 res.push(x.concat(y));
+                
+                flag = true;
             }
         }
-        console.log(res, " ==> res");
-        console.log(arr, " ==> arr");
-    })
+
+        if(arr.length == 1 && arr[0] != int) break;
+
+        i = flag ? 0 : i+1;
+    }
 
     return res;
 }
@@ -33,8 +28,4 @@ function sumArray(arr, int){
 console.log("EXERCISE 3");
 console.log(sumArray([2,1,4,3], 5));
 console.log(sumArray([1,8,10,3], 11));
-
-// let test = [0,1,2,3,4,5,6,7,8,9];
-// console.log(test.splice(2, 1));
-// console.log(test.splice(5-1,1));
-// console.log(test);
+console.log(sumArray([1,8,10,3,7,4, 5], 11));

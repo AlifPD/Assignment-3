@@ -2,29 +2,33 @@ function arrSum(arr){
     let maxSum = Number.NEGATIVE_INFINITY;
     let temp = 0;
 
-    let indexStart = 0;
-    let indexEnd = 0;
-    
-    let tempStart = 0;
+    let indexTemp = 0;
+    let index = {
+        start : 0,
+        end : 0
+    }
 
     for(let i=0; i<arr.length; i++){
         temp += arr[i];
-        
-        if(temp > maxSum){
+
+        if(maxSum<temp){
             maxSum = temp;
-            indexStart = tempStart;
-            indexEnd = i;
+            index.start = indexTemp;
+            index.end = i;
         }
 
         if(temp < 0){
             temp = 0;
-            tempStart = i+1;
+            indexTemp = i+1;
         }
     }
 
-    console.log(arr.slice(indexStart, indexEnd+1));
-    console.log(maxSum);
-    // return [arr.slice(indexStart, indexEnd+1), maxSum]
+    arr.splice(0, index.start);
+    arr.splice(index.end+1, arr.length-index.end)
+
+    let res = [arr, maxSum]
+    return res
 }
 
-arrSum([-2,-3,4,-1,-2,1,5,-3])
+console.log("EXERCISE 4");
+console.log(arrSum([-2,-3,4,-1,-2,1,5,-3]));
