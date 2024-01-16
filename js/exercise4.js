@@ -1,6 +1,7 @@
 function arrSum(arr){
     let maxSum = Number.NEGATIVE_INFINITY;
     let temp = 0;
+    let newArr = [];
 
     let indexTemp = 0;
     let index = {
@@ -23,11 +24,11 @@ function arrSum(arr){
         }
     }
 
-    arr.splice(0, index.start);
-    arr.splice(index.end+1, arr.length-index.end)
-
-    let res = [arr, maxSum]
-    return res
+    for(let i=index.start; i<=index.end; i++){
+        newArr.push(arr[i]);
+    }
+    
+    return [newArr, maxSum]
 }
 
 console.log("EXERCISE 4");
